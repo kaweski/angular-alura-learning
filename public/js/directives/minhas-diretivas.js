@@ -42,7 +42,8 @@ angular.module("minhasDiretivas", [])
 		restrict: "AE",
 		scope : {
 			titulo : "@",
-			url : "@"
+			url : "@",
+			descricao : "@"
 		},
 		templateUrl : "js/directives/minha-foto.html"
 	}

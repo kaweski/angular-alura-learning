@@ -17,3 +17,7 @@
 	-webkit-transform: scale(0);
 	        transform: scale(0);
 }
+
+.painel-animation:nth-child(6n+1) {
+	clear: both;
+}
