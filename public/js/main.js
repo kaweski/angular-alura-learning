@@ -2,4 +2,4 @@
 // alurapic é o nome do módulo, [] não tem dependência nenhuma
 // angular.module('alurapic', []); 
 
-angular.module('alurapic', ['minhasDiretivas']);
+angular.module('alurapic', ['minhasDiretivas', 'ngAnimate']);

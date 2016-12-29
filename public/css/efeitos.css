@@ -1,0 +1,19 @@
+.painel-animation,
+.painel-animation.ng-enter {
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .5s ease-in-out;
+}
+
+.painel-animation,
+.painel-animation.ng-enter-active {
+	width: 16.66666667%;
+	-webkit-transform: scale(1);
+	        transform: scale(1);
+}
+
+.painel-animation.ng-leave-active,
+.painel-animation.ng-enter {
+	width: 0px;
+	-webkit-transform: scale(0);
+	        transform: scale(0);
+}
