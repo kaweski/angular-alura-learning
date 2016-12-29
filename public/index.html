@@ -22,9 +22,14 @@ ng-controller faz carregar o controller definido, instancia o controller e atual
 				<h1 class="text-center">Alurapic</h1>
 			</div>
 
+			<form>
+				<!-- A medida q eu for digitando eu vou atualizando os dados -->
+				<input ng-model="filtro" type="text" placeholder="Filtrar" class="form-control">
+			</form>
+
 			<div class="row">
 
-				<meu-painel class="col-md-2" ng-repeat="foto in fotos" titulo="{{foto.titulo}}">
+				<meu-painel class="col-md-2 col-sm-3 col-xs-6" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
 					<img class="center-block img-responsive" src="{{foto.url}}" alt="{{foto.titulo}}">
 				</meu-painel>
 
