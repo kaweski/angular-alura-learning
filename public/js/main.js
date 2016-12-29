@@ -15,7 +15,7 @@ angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
 
 	$routeProvider.when('/fotos/new', {
 		templateUrl: 'partials/foto.html',
-		// controller: 'FotosController'
+		controller: 'FotoController'
 	});
 
 	// Caso seja qualquer rota que não está definida, a view é redirecionada para uma rota antes definida

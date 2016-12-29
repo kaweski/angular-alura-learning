@@ -3,8 +3,13 @@
 </div>
 
 <form>
-	<!-- A medida q eu for digitando eu vou atualizando os dados, e com o debounce há um delay pra isso. postergação do two-way data binding -->
-	<input ng-model="filtro" ng-model-options="{debounce: 500}" type="text" placeholder="Filtrar" class="form-control">
+	<div class="input-group">
+		<span class="input-group-btn">
+			<a href="/fotos/new" class="btn btn-default" type="button">Nova foto</a>
+		</span>
+		<!-- A medida q eu for digitando eu vou atualizando os dados, e com o debounce há um delay pra isso. postergação do two-way data binding -->
+		<input ng-model="filtro" ng-model-options="{debounce: 500}" type="text" placeholder="Filtrar" class="form-control">
+	</div>
 </form>
 
 <hr>

@@ -1,1 +1,46 @@
-<h1>Cadastro de fotos</h1>
+<div class="page-header text-center">
+	<h1>{{foto.titulo}}</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+<!-- novalidate desabilita a validação do HTML5 -->
+<form novalidate name="cadastro" ng-submit="submeter()">
+	<div class="row">
+		<div class="col-md-6">
+
+			<div class="form-group">
+				<label>Título</label>
+				<input name="titulo" class="form-control" ng-model="foto.titulo" required ng-maxlength="20">
+				<span ng-show="cadastro.$submitted && cadastro.titulo.$error.required" class="alert-danger form-control">
+					Título obrigatório
+				</span>
+				<span ng-show="cadastro.$submitted && cadastro.titulo.$error.maxlength" class="alert-danger form-control">
+					Deve ter no máx 20 caracteres
+				</span>
+			</div>
+
+			<div class="form-group">
+				<label>URL</label>
+				<input name="url" class="form-control" ng-model="foto.url" required>
+				<span ng-show="cadastro.$submitted && cadastro.url.$error.required" class="alert-danger form-control">
+					URL obrigatória
+				</span>
+			</div>
+
+			<div class="form-group">
+				<label>Descrição</label>
+				<textarea name="descricao" class="form-control" ng-model="foto.descricao"></textarea>
+			</div>
+
+			<div class="btn-group text-right">
+				<button type="submit" class="btn btn-success" ng-disabled="cadastro.$invalid">Salvar</button> <!-- Se o formulário tiver inválido, o botão permanece desabilitado -->
+				<a href="/" class="btn btn-danger">Voltar</a>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
+		</div>
+	</div>
+</form>
