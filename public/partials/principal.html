@@ -1,0 +1,18 @@
+<div class="jumbotron">
+	<h1 class="text-center">Alurapic</h1>
+</div>
+
+<form>
+	<!-- A medida q eu for digitando eu vou atualizando os dados, e com o debounce há um delay pra isso. postergação do two-way data binding -->
+	<input ng-model="filtro" ng-model-options="{debounce: 500}" type="text" placeholder="Filtrar" class="form-control">
+</form>
+
+<hr>
+
+<div class="row">
+
+	<meu-painel class="col-md-2 col-sm-3 col-xs-6 painel-animation" ng-repeat="foto in fotos | filter: {titulo: filtro}" titulo="{{foto.titulo}}">
+		<minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
+	</meu-painel>
+
+</div>
