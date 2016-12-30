@@ -2,7 +2,7 @@
 // alurapic é o nome do módulo, [] não tem dependência nenhuma
 // angular.module('alurapic', []); 
 
-angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
+angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute', 'meusServicos'])
 
 .config(function($routeProvider, $locationProvider) {
 
