@@ -25,6 +25,7 @@ angular.module('alurapic').controller('FotoController', function($scope, $http, 
 				$http.post('v1/fotos', $scope.foto)
 				.success( function() {
 					$scope.foto = {};
+					$scope.cadastro.$setPristine();
 					$scope.mensagem = "Foto incluída com sucesso";
 				})
 				.error( function(erro){

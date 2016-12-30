@@ -47,4 +47,15 @@ angular.module("minhasDiretivas", [])
 		},
 		templateUrl : "js/directives/minha-foto.html"
 	}
+})
+
+.directive("meuBotaoPerigo", function() {
+	return {
+		restrict: "E",
+		scope : {
+			nome : "@",
+			acao : "&" // passando uma expressão e não uma string
+		},
+		template : '<button ng-click="acao(foto)" class="btn btn-danger btn-block">{{nome}}</button>'
+	}
 });
