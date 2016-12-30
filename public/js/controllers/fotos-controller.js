@@ -1,6 +1,7 @@
 // Importando o main.js
 // Criação de um controller que o main.js importa
-angular.module('alurapic').controller('FotosController', function($scope, recursoFoto) {
+angular.module('alurapic').controller('FotosController',
+	function($scope, recursoFoto) {
 
 	// $scope: dependência do controller.
 	// É adicionada a foto dinamicamente no $scope.
@@ -18,7 +19,7 @@ angular.module('alurapic').controller('FotosController', function($scope, recurs
 	$scope.remover = foto => {
 
 		recursoFoto.delete({fotoId : foto._id}, function() {
-			
+
 			let indexFoto = $scope.fotos.indexOf(foto);
 			$scope.fotos.splice(indexFoto, 1);
 			$scope.mensagem = `Foto ${foto.titulo} foi removida com sucesso!`;
@@ -27,7 +28,5 @@ angular.module('alurapic').controller('FotosController', function($scope, recurs
 			console.log(erro);
 			$scope.mensagem = `Não foi possível remover a foto ${foto.titulo}.`;
 		});
-
 	};
-
 });

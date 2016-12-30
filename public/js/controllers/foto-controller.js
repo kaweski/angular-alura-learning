@@ -1,51 +1,30 @@
-angular.module('alurapic').controller('FotoController', function($scope, recursoFoto, $routeParams){
+angular.module('alurapic').controller('FotoController', 
+	function($scope, recursoFoto, cadastroDeFoto, $routeParams){
 
 	$scope.foto = {};
 	$scope.mensagem = '';
 
 	// Condicional para edição da foto
 	if ($routeParams.fotoId) {
-		recursoFoto.get({fotoId : $routeParams.fotoId}, 
-			foto => $scope.foto = foto, 
-			erro => {
-				console.log(erro);
-				$scope.mensagem = `Não foi possível obter a foto de ID ${$routeParams.fotoId}`;
-			}
-		);
+		recursoFoto.get({fotoId : $routeParams.fotoId}, foto => $scope.foto = foto, erro => {
+			console.log(erro);
+			$scope.mensagem = `Não foi possível obter a foto de ID ${$routeParams.fotoId}`;
+		});
 	}
 
 	// Função de "Salvar" do formulário de cadastro/edição
 	$scope.submeter = function() {
 		if ( $scope.cadastro.$valid ) {
 
-			// Verifica se possui ID na foto
-			if ( $routeParams.fotoId ) {
+			cadastroDeFoto.cadastrar($scope.foto).then( dados => {
+				$scope.mensagem = dados.mensagem;
 
-				// Se possuir, habilita sua edição
-
-				// ------------- Edição
-				recursoFoto.update({fotoId : $scope.foto._id}, 
-					$scope.foto, function() {
-					$scope.mensagem = `A foto ${$scope.foto.titulo} foi alterada com sucesso.`;
-				}, erro => {
-					console.log(erro);
-					$scope.mensagem = `Não foi possível alterar a foto ${$scope.foto.titulo}.`;
-				});
-
-			} else {
-
-				// Se não possuir ID na foto atual, habilita a criação de uma nova foto
-
-				// ------------- Criação
-				recursoFoto.save($scope.foto, function() {
+				if ( dados.inclusao ) {
 					$scope.foto = {};
 					$scope.cadastro.$setPristine();
-					$scope.mensagem = "Foto incluída com sucesso";
-				}, erro => {
-					console.log(erro);
-					$scope.mensagem = "Não foi possível incluir a foto";
-				});
-			}
+				}
+
+			}).catch( erro => $scope.mensagem = dados.mensagem);
 		}
 	};
 });
