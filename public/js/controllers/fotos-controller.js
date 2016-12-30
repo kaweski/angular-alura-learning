@@ -11,6 +11,8 @@ angular.module('alurapic').controller('FotosController', function($scope, $http)
 	// O filtro deve ser bidirecional, ou seja, o que eu digitar no filtro deve ser entendido
 	$scope.filtro = '';
 
+	$scope.mensagem = '';
+
 	/*
 	var promise = $http.get('v1/fotos');
 	promise.then(function(retorno) {
@@ -27,7 +29,22 @@ angular.module('alurapic').controller('FotosController', function($scope, $http)
 	*/
 
 	$http.get('v1/fotos')
-		.success( fotos => $scope.fotos = fotos )
-		.error( message => console.log(message) );
+		.success( retorno => $scope.fotos = retorno )
+		.error( erro => console.log(erro) );
+
+	// Função que remove uma foto da listagem de fotos
+	$scope.remover = function(foto) {
+		$http.delete('v1/fotos/' + foto._id)
+		.success(function() {
+			let indexFoto = $scope.fotos.indexOf(foto);
+			$scope.fotos.splice(indexFoto, 1);
+
+			$scope.mensagem = `Foto ${foto.titulo} foi removida com sucesso!`;
+		})
+		.error(function(erro) {
+			console.log(erro);
+			$scope.mensagem = `Não foi possível remover a foto ${foto.titulo}.`;
+		})
+	};
 
 });
