@@ -43,7 +43,7 @@ angular.module("minhasDiretivas", [])
 		scope : {
 			titulo : "@",
 			url : "@",
-			descricao : "@"
+			descricao : "@" // Usamos @ quando queremos realizar uma cópia do valor passado para a diretiva no HTML para dentro do escopo isolado na diretiva. Essa cópia é sempre um valor em string.
 		},
 		templateUrl : "js/directives/minha-foto.html"
 	}
@@ -54,8 +54,44 @@ angular.module("minhasDiretivas", [])
 		restrict: "E",
 		scope : {
 			nome : "@",
-			acao : "&" // passando uma expressão e não uma string
+			acao : "&" // Usamos & geralmente quando queremos executar dentro de uma diretiva uma função que pertence a um escopo pai, o de um controller
 		},
 		template : '<button ng-click="acao(foto)" class="btn btn-danger btn-block">{{nome}}</button>'
+	}
+})
+
+.directive("meuFocus", function() {
+	return {
+		restrict: "A",
+		// scope : {
+		// 	focado : "=" // comunicação bidirecional entre a diretiva e o controller
+		// },
+		link : function(scope, element) {
+			// scope.$watch("focado", function() {
+			// 	if ( scope.focado ) {
+			// 		element[0].focus(); // forma que ele vai pegar o elemento do DOM sem utilizar jQuery
+			// 		scope.focado = false;
+			// 	}
+			// });
+
+			// O custo do $watch é caro para usar, portando, iremos reutilizar $broadcast ao salvar/editar e verificar se foi acionada com $on aqui
+			scope.$on("fotoCadastrada", function() {
+				element[0].focus();
+			});
+		}
+	}
+})
+
+.directive("meusTitulos", function() {
+	return {
+		restrict : "E",
+		template : '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>',
+		controller : function($scope, recursoFoto) {
+			recursoFoto.query(function(fotos) {
+				$scope.titulos = fotos.map(function(foto) {
+					return foto.titulo;
+				});
+			})
+		},
 	}
 });

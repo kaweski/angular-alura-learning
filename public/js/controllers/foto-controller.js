@@ -24,6 +24,8 @@ angular.module('alurapic').controller('FotoController',
 					$scope.cadastro.$setPristine();
 				}
 
+				// $scope.focado = true;
+
 			}).catch( erro => $scope.mensagem = dados.mensagem);
 		}
 	};

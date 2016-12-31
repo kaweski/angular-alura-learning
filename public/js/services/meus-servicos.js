@@ -11,9 +11,10 @@ angular.module('meusServicos', ['ngResource']).factory('recursoFoto',
 })
 
 // $q, especializado na criação de promises
-.factory('cadastroDeFoto', function(recursoFoto, $q) {
+.factory('cadastroDeFoto', function(recursoFoto, $q, $rootScope) {
 	
 	var servico = {};
+	var evento = "fotoCadastrada";
 
 	servico.cadastrar = foto => {
 		return $q(function(resolve, reject) {
@@ -22,6 +23,7 @@ angular.module('meusServicos', ['ngResource']).factory('recursoFoto',
 			if ( foto._id ) {
 
 				recursoFoto.update({fotoId : foto._id}, foto, function() {
+					$rootScope.$broadcast(evento);
 					resolve({
 						mensagem : `Foto ${foto.titulo} alterada com sucesso.`,
 						inclusao : false
@@ -38,6 +40,7 @@ angular.module('meusServicos', ['ngResource']).factory('recursoFoto',
 			} else {
 
 				recursoFoto.save(foto, function() {
+					$rootScope.$broadcast(evento);
 					resolve({
 						mensagem : `Foto ${foto.titulo} incluída com sucesso`,
 						inclusao : true
