@@ -1,4 +1,4 @@
-# Brincando com Angular 1 :ok_woman:
+# Brincando com AngularJS :ok_woman:
 
 Esse repositório é uma brincadeirinha minha com Angular, uma segunda impressão que tive da linguagem com o curso de [Angular 1 da Alura](https://cursos.alura.com.br/course/angularjs-mvc/). Tem o intuito apenas de aprendizado - o meu, utilizando a didática da [Alura](https://github.com/alura-cursos) sobre Angular, MVC e ES6.
 
